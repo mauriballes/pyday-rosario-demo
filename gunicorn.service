@@ -1,0 +1,14 @@
+# Path for the file: /etc/systemd/system/gunicorn.service
+
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=deploy
+Group=www-data
+WorkingDirectory=/home/deploy/flask-demo
+ExecStart=/home/deploy/flask-demo/bin/gunicorn --workers 3 --bind unix:/home/deploy/flask-demo/src/flask-demo.sock main:app
+
+[Install]
+WantedBy=multi-user.target
